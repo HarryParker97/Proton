@@ -1,3 +1,0 @@
-C:/Users/Harry Parker/Documents/Coding/backtester_project/build/CMakeFiles/backtester_module.dir
-C:/Users/Harry Parker/Documents/Coding/backtester_project/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/Harry Parker/Documents/Coding/backtester_project/build/CMakeFiles/ZERO_CHECK.dir

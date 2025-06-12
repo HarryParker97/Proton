@@ -4,64 +4,38 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <stdexcept>
 
 namespace py = pybind11;
 
 class TickerTimeseries {
 public:
-    std::vector<int> high;
-    std::vector<int> low;
-    std::vector<int> open;
-    std::vector<int> close;
-    std::vector<int> volume;
-
-    TickerTimeseries(
-        std::vector<int> high,
-        std::vector<int> low,
-        std::vector<int> open,
-        std::vector<int> close,
-        std::vector<int> volume
-    ) {
-        this->high = high;
-        this->low = low;
-        this->open = open;
-        this->close = close;
-        this->volume = volume;
-    }
-
-    TickerTimeseries() = default; // Default constructor if needed
-};
-
-
-struct TickerTimeSeries {
-
     std::vector<float> high;
     std::vector<float> low;
     std::vector<float> open;
     std::vector<float> close;
     std::vector<float> volume;
 
-    TickerTimeSeries(
+    TickerTimeseries() = default;
+
+    TickerTimeseries(
         const std::vector<float>& high,
         const std::vector<float>& low,
         const std::vector<float>& open,
         const std::vector<float>& close,
         const std::vector<float>& volume
-    ) {
-        this->high = high;
-        this->low = low;
-        this->open = open;
-        this->close = close;
-        this->volume = volume;
-
-        _ticker_time_series_validation();
+    )
+        : high(high), low(low), open(open), close(close), volume(volume) {
+        validate();
     }
 
-    void _ticker_time_series_validation() {
-
+    void validate() {
+        size_t size = high.size();
+        if (low.size() != size || open.size() != size || close.size() != size || volume.size() != size) {
+            throw std::invalid_argument("All time series vectors must be the same size");
+        }
     }
-
-}
+};
 
 class MarketDataSet {
 public:
@@ -71,14 +45,11 @@ public:
     MarketDataSet(
         const std::string& date_input,
         const std::map<std::string, TickerTimeseries>& ts_input
-    ) {
-        date = date_input;
-        ticker_timeseries = ts_input;
-    }
+    )
+        : date(date_input), ticker_timeseries(ts_input) {}
 };
 
 py::dict process_dict(const py::dict& input_dict) {
-    
     std::string date = input_dict["date"].cast<std::string>();
     std::string ticker = input_dict["ticker"].cast<std::string>();
 
