@@ -1,0 +1,10 @@
+^C:\USERS\HARRY PARKER\DOCUMENTS\CODING\BACKTESTER_PROJECT\BUILD\CMAKEFILES\6201A556CC8742CBBC2EFBEC9E879CBE\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/Harry Parker/Documents/Coding/backtester_project" "-BC:/Users/Harry Parker/Documents/Coding/backtester_project/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/Harry Parker/Documents/Coding/backtester_project/build/backtester.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,5 @@
+pip install pybind11[global]
+
+
+
+# > cmake -Dpybind11_DIR="C:\Users\Harry Parker\Documents\Coding\backtester_project\.venv\Lib\site-packages\pybind11\share\cmake\pybind11" ..
