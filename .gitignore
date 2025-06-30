@@ -1,0 +1,19 @@
+# Python virtual environment
+.venv/
+venv/
+
+# Compiled Python files
+__pycache__/
+*.py[cod]
+*.pyd
+
+# Build directories
+build/
+dist/
+Debug/
+
+# Environment files
+.env
+
+# VS Code settings (if you use it)
+.vscode/
